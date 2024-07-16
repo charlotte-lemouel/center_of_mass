@@ -134,7 +134,7 @@ def estimator_gains(Force_std, Position_std, Frequency, mass):
         l1    = 1 - ratio**2*l2**2
     else:
         if Force_std == 0 and Position_std == 0:
-            print('Either Force_std or Position_std must be strictly positive')
+            raise ValueError('Either Force_std or Position_std must be strictly positive')
         elif Force_std == 0: 
             l1 = 0
             l2 = 0
@@ -142,7 +142,7 @@ def estimator_gains(Force_std, Position_std, Frequency, mass):
             l1 = 1
             l2 = 2
         else:
-            print('Force_std and Position_std must be positive')
+            raise ValueError('Force_std and Position_std must be positive')
     return l1, l2
    
 # Unless they are specified by the user, the initial estimates of position and velocity are obtained as a least-squares fit on the first few samples of the position measurement.    
