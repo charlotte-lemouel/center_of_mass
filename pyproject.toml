@@ -15,3 +15,8 @@ documentation = ["sphinx","nbsphinx","numpydoc","sphinx-rtd-theme","myst-parser"
 tutorials     = ["matplotlib","jupyter"]
 
 [project.urls]
+Documentation = "https://center-of-mass.readthedocs.io/"
+Homepage      = "https://github.com/charlotte-lemouel/center_of_mass"
+
+[tool.flit.sdist]
+exclude = ["src-matlab/"]
