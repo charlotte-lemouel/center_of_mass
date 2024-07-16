@@ -1,6 +1,0 @@
-sphinx
-nbsphinx
-numpydoc
-sphinx-rtd-theme
-myst-parser
-ipython
