@@ -11,6 +11,7 @@ dynamic = ["version", "description"]
 dependencies = ["numpy>=1.24"]
 
 [project.optional-dependencies]
-documentation = ["matplotlib","jupyter","sphinx","nbsphinx","numpydoc","sphinx-rtd-theme","myst-parser"]
+documentation = ["sphinx","nbsphinx","numpydoc","sphinx-rtd-theme","myst-parser"]
+tutorials     = ["matplotlib","jupyter"]
 
 [project.urls]
