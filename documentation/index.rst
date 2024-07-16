@@ -4,6 +4,12 @@
 Welcome to Center of Mass's documentation!
 ==========================================
 
+Installation
+------------
+
+Please install using ``pip install center_of_mass``
+Alternately, the code can be downloaded at https://github.com/charlotte-lemouel/center_of_mass
+
 Downloads
 ---------
 
