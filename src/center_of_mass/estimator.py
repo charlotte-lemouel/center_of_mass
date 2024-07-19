@@ -127,20 +127,19 @@ def estimator_gains(Force_std, Position_std, Frequency, mass):
     l2: float or (NbOfDimensions,) numpy.ndarray
         Optimal estimator gain for velocity (dimensionless)
     '''
-    if Force_std > 0 and Position_std > 0:
-        Acceleration_std = Force_std/mass
-        ratio = Position_std/Acceleration_std*Frequency**2
-        l2    = (4*ratio+1 - numpy.sqrt(1+8*ratio))/(4*ratio**2)
-        l1    = 1 - ratio**2*l2**2
-    else:
-        if Force_std == 0 and Position_std == 0:
+    Acceleration_std = Force_std/mass
+    ratio = Position_std/Acceleration_std*Frequency**2
+    l2    = numpy.array((4*ratio+1 - numpy.sqrt(1+8*ratio))/(4*ratio**2))
+    l1    = numpy.array(1 - ratio**2*l2**2)
+    if not numpy.array(((Position_std > 0)*(Force_std > 0))).all():
+        if numpy.array((Force_std == 0)*(Position_std == 0)).any():
             raise ValueError('Either Force_std or Position_std must be strictly positive')
-        elif Force_std == 0: 
-            l1 = 0
-            l2 = 0
-        elif Position_std == 0:
-            l1 = 1
-            l2 = 2
+        elif numpy.array(Force_std == 0).any(): 
+            l1[Force_std == 0] = 0
+            l2[Force_std == 0] = 0
+        elif numpy.array(Position_std == 0).any():
+            l1[Position_std == 0] = 1
+            l2[Position_std == 0] = 2
         else:
             raise ValueError('Force_std and Position_std must be positive')
     return l1, l2
@@ -275,14 +274,14 @@ def optimal_combination(GroundReactionForce, Force_frequency, Force_std, Kinemat
         Ground reaction force (in Newton)
     Force_frequency: int 
         Sampling frequency (in Hertz) of the Ground reaction force
-    Force_std: float
-        Standard deviation of the error in Ground reaction force (in N)
+    Force_std: float or (NbOfDimensions,) numpy.ndarray
+        Standard deviation of the error in Ground reaction force (in N) (can be provided for each dimension independently)
     Kinematic_com: (NbOfDimensions,NbOfSamples2) numpy.ndarray
         Center of Mass position obtained from kinematic measurements (in m)
     Kinematic_frequency: int 
         Sampling frequency (in Hertz) of the kinematics
-    Position_std: float
-        Standard deviation of the error in CoM position obtained from the kinematics (in m)
+    Position_std: float or (NbOfDimensions,) numpy.ndarray
+        Standard deviation of the error in CoM position obtained from the kinematics (in m) (can be provided for each dimension independently)
     mass: float 
         subject's mass (in kg)
     gravity_direction: (NbOfDimensions) numpy.ndarray, optional
