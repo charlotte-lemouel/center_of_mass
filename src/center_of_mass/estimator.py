@@ -264,8 +264,8 @@ def estimator_backandforth(Acc_measurement, Pos_measurement, l1, l2, Frequency, 
     Vel_estimate = 0.5*(Vel_estimate_forw-Vel_estimate_back[:,::-1])    
     return Pos_estimate, Vel_estimate
     
-def optimal_combination(GroundReactionForce, Force_frequency, Force_std, Kinematic_com, Kinematic_frequency, Position_std, mass,
-    gravity_direction = numpy.array([0,0,-1]), sub_frequency = None, Initial_conditions = None, Final_conditions = None, initial_samples = 10):
+def optimal_combination(GroundReactionForce, Force_frequency, Kinematic_com, Kinematic_frequency, mass,
+    Force_std = 2, Position_std = 0.002, gravity_direction = numpy.array([0,0,-1]), sub_frequency = None, Initial_conditions = None, Final_conditions = None, initial_samples = 10):
     '''Combines the Center of Mass position obtained from kinematic measurements with Ground reaction force to estimate the Center of Mass position and velocity
     
     Parameters
@@ -274,16 +274,16 @@ def optimal_combination(GroundReactionForce, Force_frequency, Force_std, Kinemat
         Ground reaction force (in Newton)
     Force_frequency: int 
         Sampling frequency (in Hertz) of the Ground reaction force
-    Force_std: float or (NbOfDimensions,) numpy.ndarray
-        Standard deviation of the error in Ground reaction force (in N) (can be provided for each dimension independently)
     Kinematic_com: (NbOfDimensions,NbOfSamples2) numpy.ndarray
         Center of Mass position obtained from kinematic measurements (in m)
     Kinematic_frequency: int 
         Sampling frequency (in Hertz) of the kinematics
-    Position_std: float or (NbOfDimensions,) numpy.ndarray
-        Standard deviation of the error in CoM position obtained from the kinematics (in m) (can be provided for each dimension independently)
     mass: float 
         subject's mass (in kg)
+    Force_std: float or (NbOfDimensions,) numpy.ndarray, optional
+        Standard deviation of the error in Ground reaction force (in N) (can be provided for each dimension independently), default is 2 N
+    Position_std: float or (NbOfDimensions,) numpy.ndarray, optional
+        Standard deviation of the error in CoM position obtained from the kinematics (in m) (can be provided for each dimension independently), default is 0.002 m
     gravity_direction: (NbOfDimensions) numpy.ndarray, optional
         direction of the gravity vector used to subtract the subject's weight, default is numpy.array([0,0,-1])
     sub_frequency: int, optional 
