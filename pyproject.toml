@@ -6,6 +6,7 @@ build-backend = "flit_core.buildapi"
 name = "center_of_mass"
 authors = [{name = "Charlotte Le Mouel", email = "charlotte.lemouel@normale.fr"}]
 license = {file = "LICENSE"}
+readme = "README.md"
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 dependencies = ["numpy>=1.24"]
