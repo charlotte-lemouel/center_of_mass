@@ -1,4 +1,10 @@
-function visualise(Acc_subsampled, Pos_subsampled, Pos_estimate, Vel_estimate, Frequency)
+function visualise(Acc_subsampled, Pos_subsampled, Pos_estimate, Vel_estimate, Frequency, Title)
+
+    % title
+    if nargin < 6
+        Title = '';
+    end
+
     % Number of dimensions and samples
     [NbOfDimensions, NbOfSamples] = size(Acc_subsampled);
     time = (0:NbOfSamples-1) / Frequency;
@@ -16,6 +22,8 @@ function visualise(Acc_subsampled, Pos_subsampled, Pos_estimate, Vel_estimate, F
         end
         if dim == 1
             ylabel('Position (m)');
+        elseif dim == 2    
+            title(Title);
         end
         
         % Velocity plot
