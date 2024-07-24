@@ -20,4 +20,4 @@ Documentation = "https://center-of-mass.readthedocs.io/"
 Homepage      = "https://github.com/charlotte-lemouel/center_of_mass"
 
 [tool.flit.sdist]
-exclude = ["src-matlab/"]
+exclude = ["src-matlab/","examples"]
