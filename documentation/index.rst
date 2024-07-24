@@ -21,7 +21,7 @@ Downloads
    :maxdepth: 2
    :caption: Contents:
    
-   kinematic_CenterOfMass_example.ipynb
+   kinematic_CenterOfMass_explanation.ipynb
    kinematic_CenterOfMass_tutorial.ipynb
    CenterOfMass_estimator_explanation.ipynb 
    CenterOfMass_estimator_tutorial.ipynb
