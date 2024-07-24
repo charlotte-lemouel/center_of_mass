@@ -1,5 +1,5 @@
-function [Pos_estimate, Vel_estimate, Frequency] = optimal_combination(GroundReactionForce, Force_frequency, Force_std, Kinematic_com, Kinematic_frequency, Position_std, mass, varargin)
-% [Pos_estimate, Vel_estimate, Frequency] = optimal_combination(GroundReactionForce, Force_frequency, Force_std, Kinematic_com, Kinematic_frequency, Position_std, mass, varargin)
+function [Pos_estimate, Vel_estimate, Frequency] = optimal_combination(GroundReactionForce, Force_frequency, Kinematic_com, Kinematic_frequency, mass, varargin)
+% [Pos_estimate, Vel_estimate, Frequency] = optimal_combination(GroundReactionForce, Force_frequency, Kinematic_com, Kinematic_frequency, mass, varargin)
 %
 % Combines the Center of Mass position obtained from kinematic measurements with Ground reaction force to estimate the Center of Mass position and velocity
 %
@@ -9,16 +9,16 @@ function [Pos_estimate, Vel_estimate, Frequency] = optimal_combination(GroundRea
 %	 Ground reaction force (in Newton)
 % Force_frequency: int 
 %	 Sampling frequency (in Hertz) of the Ground reaction force
-% Force_std: float
-%	 Standard deviation of the error in Ground reaction force (in N)
 % Kinematic_com: (NbOfDimensions,NbOfSamples2) double array
 %	 Center of Mass position obtained from kinematic measurements (in m)
 % Kinematic_frequency: int 
 % 	Sampling frequency (in Hertz) of the kinematics
-% Position_std: float
-% 	Standard deviation of the error in CoM position obtained from the kinematics (in m)
 % mass: float 
 %	 subject's mass (in kg)
+% Force_std: float, optional
+%	 Standard deviation of the error in Ground reaction force, default is 2 (in N)
+% Position_std: float, optional
+% 	Standard deviation of the error in CoM position obtained from the kinematics, default is 0.002 (in m)
 % gravity_direction: (NbOfDimensions) double array, optional
 %	 direction of the gravity vector used to subtract the subject's weight, default is [0,0,-1]
 % sub_frequency: int, optional 
@@ -42,6 +42,16 @@ function [Pos_estimate, Vel_estimate, Frequency] = optimal_combination(GroundRea
 % 	Sampling frequency of the position and velocity estimates
 
 % Optional arguments
+if ismember('Force_std',varargin(1:2:end))
+    Force_std = varargin{find(strcmp('Force_std',varargin))+1};
+else
+    Force_std = 2; % default, in N
+end
+if ismember('Position_std',varargin(1:2:end))
+    Position_std = varargin{find(strcmp('Position_std',varargin))+1};
+else
+    Position_std = 0.002; % default, in m
+end
 if ismember('gravity_direction',varargin(1:2:end))
     gravity_direction = varargin{find(strcmp('gravity_direction',varargin))+1};
 else
