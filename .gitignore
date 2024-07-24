@@ -4,3 +4,7 @@ dist/
 .virtual_documents/
 documentation/.ipynb_checkpoints/
 documentation/_build/
+examples/.ipynb_checkpoints/
+validation/data/
+validation/.ipynb_checkpoints/
+validation/__pycache__
