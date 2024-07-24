@@ -127,7 +127,7 @@ def estimator_gains(Force_std, Position_std, Frequency, mass):
     l2: float or (NbOfDimensions,) numpy.ndarray
         Optimal estimator gain for velocity (dimensionless)
     '''
-    Acceleration_std = Force_std/mass
+    Acceleration_std = numpy.float64(Force_std/mass)
     ratio = Position_std/Acceleration_std*Frequency**2
     l2    = numpy.array((4*ratio+1 - numpy.sqrt(1+8*ratio))/(4*ratio**2))
     l1    = numpy.array(1 - ratio**2*l2**2)
