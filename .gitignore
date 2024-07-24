@@ -1,6 +1,1 @@
-*.pyc
-__pycache__
 dist/
-.virtual_documents/
-documentation/.ipynb_checkpoints/
-documentation/_build/
