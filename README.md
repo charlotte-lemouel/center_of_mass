@@ -10,3 +10,7 @@ Tutorials and the explanation of the code are in the documentation folder. The d
 Examples are in the example folder.
 
 The performance of the estimator was validated in Le Mouel (2024). The data and code for reproducing the results and figures of this paper are in the validation folder.
+
+Reference: 
+Le Mouel, C. (2024). Optimal merging of kinematic and kinetic information to determine the position of the whole body Center of Mass. biorXiv. doi: 10.1101/2024.07.24.604923
+
